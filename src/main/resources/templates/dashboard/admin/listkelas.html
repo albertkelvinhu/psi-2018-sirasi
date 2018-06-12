@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>List Kelas</title>
+<script type="text/javascript" src="/js/datatables.js"></script>
+</head>
+<body>
+
+	<div>
+		<div class="content-wrapper">
+			<section layout:fragment="header">
+				<h1>
+					List <small>Kelas</small>
+				</h1>
+
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">List Kelas</li>
+				</ol>
+			</section>
+			<section layout:fragment="content" class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<a th:href=@{/admin/kelas/add} type="button"
+							class="btn btn-block btn-primary btn-flat">Tambah Kelas</a>
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Tabel Daftar Kelas</h3>
+							</div>
+							<div class="box-body" th:if="${not #lists.isEmpty(kelases)}">
+								<div class="col-xs-6">
+									<table id="dataTable"
+										class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>ID Kelas</th>
+												<th>Kode Kelas</th>
+												<th>Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="kelas : ${kelases}">
+												<td th:text="${kelas.id}">ID Kelas</td>
+												<td><a th:text="${kelas.kodeKelas}"
+													th:href="${'/admin/kelas/view/' + kelas.id}">Kode Kelas
+												</a></td>
+												<td><a class="fa fa-trash"
+													th:href="${'/admin/kelas/delete/' + kelas.id}"></a></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>ID Kelas</th>
+												<th>Kode Kelas</th>
+												<th>Actions</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script>
+		$(function() {
+			$('#siswalist').DataTable()
+			$('#example2').DataTable({
+				'paging' : true,
+				'lengthChange' : false,
+				'searching' : false,
+				'ordering' : true,
+				'info' : true,
+				'autoWidth' : false
+			})
+		})
+	</script>
+</body>
+</html>

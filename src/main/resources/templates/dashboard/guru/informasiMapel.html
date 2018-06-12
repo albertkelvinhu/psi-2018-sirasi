@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>Informasi Mata Pelajaran</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="content-wrapper">
+		<section layout:fragment="header">
+			<h1>
+				Mata Pelajaran <small>Informasi</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Mata Pelajaran</li>
+			</ol>
+		</section>
+		<section layout:fragment="content" class="content">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">[[${mapel.namaMapel}]]</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<strong><i class="fa fa-book margin-r-5"></i> Nama Mata
+								Pelajaran</strong>
+
+							<p class="text-muted">[[${mapel.namaMapel}]]</p>
+
+							<hr>
+
+							<strong><i class="fa fa-map-marker margin-r-5"></i> KKM</strong>
+
+							<p class="text-muted">[[${mapel.kkm}]]</p>
+
+							<hr>
+
+						</div>
+						<!-- /.box-body -->
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">Guru :
+								[[${mapel.namaMapel}]]</h3>
+						</div>
+						<div class="box-body">
+							<table id="gurulist" class="table table-bordered table-striped">
+								<tr>
+									<th>Guru ID</th>
+									<th>NIP</th>
+									<th>Name</th>
+
+								</tr>
+								<tr th:each="guru : ${mapel.guru}">
+									<td th:text="${guru.id}">Guru ID</td>
+									<td th:text="${guru.nip}">NIP</td>
+									<td th:inline="text">[[${guru.firstName}]]
+										[[${guru.lastName}]]</td>
+
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+	</div>
+
+</body>
+</html>

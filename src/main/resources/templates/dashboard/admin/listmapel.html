@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>List Kelas</title>
+<script type="text/javascript" src="/js/datatables.js"></script>
+</head>
+<body>
+
+	<div>
+		<div class="content-wrapper">
+			<section layout:fragment="header">
+				<h1>
+					List <small>Mata Pelajaran</small>
+				</h1>
+
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">List MaPel</li>
+				</ol>
+			</section>
+			<section layout:fragment="content" class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Tabel Daftar Mata Pelajaran</h3>
+							</div>
+							<div class="box-body" th:if="${not #lists.isEmpty(mapels)}">
+								<div class="col-xs-6">
+									<table id="dataTable"
+										class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>ID Mata Pelajaran</th>
+												<th>Mata Pelajaran</th>
+
+												<!--  <th>View</th>-->
+												<th>View</th>
+												<th>Delete</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="mapel : ${mapels}">
+												<td th:text="${mapel.id}">ID Mata Pelajaran</td>
+												<td th:text="${mapel.namaMapel}">Mata Pelajaran</td>
+												<!-- <td><a th:href="${ '/product/' + product.id}">View</a></td>-->
+												<td><a th:href="${'/admin/mapel/view/' + mapel.id}">View
+												</a></td>
+												<td><a th:href="${'/admin/mapel/delete/' + mapel.id}">Delete</a></td>
+											</tr>
+										</tbody>
+										<tfoot>
+											<tr>
+												<th>ID Mata Pelajaran</th>
+												<th>Mata Pelajaran</th>
+
+												<!--  <th>View</th>-->
+												<th>View</th>
+												<th>Delete</th>
+											</tr>
+										</tfoot>
+									</table>
+								</div>
+								<div th:if="${mapel != null}" class="col-md-4">
+									<div class="box box-primary">
+										<div class="box-header with-border">
+											<h3 class="box-title" th:inline="text">[[${mapel.namaMapel}]]</h3>
+										</div>
+										<!-- /.box-header -->
+										<div class="box-body">
+											<strong><i class="fa fa-book margin-r-5"></i> Nama
+												Mata Pelajaran</strong>
+											<p class="text-muted">[[${mapel.namaMapel}]]</p>
+											<hr>
+											<strong><i class="fa fa-map-marker margin-r-5"></i>
+												KKM</strong>
+
+											<p class="text-muted">[[${mapel.kkm}]]</p>
+											<hr>
+										</div>
+										<!-- /.box-body -->
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

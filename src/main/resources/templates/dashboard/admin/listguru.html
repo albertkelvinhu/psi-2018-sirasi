@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>List Guru</title>
+<script src="/js/datatables.js"></script>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>
+			List <small>Guru</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">List Guru</li>
+		</ol>
+	</section>
+	<div>
+		<div class="content-wrapper">
+			<section layout:fragment="header">
+				<h1>
+					List <small>Guru</small>
+				</h1>
+
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">List Guru</li>
+				</ol>
+			</section>
+			<section layout:fragment="content" class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Tabel Daftar Guru</h3>
+
+							</div>
+							<div class="box-body" th:if="${not #lists.isEmpty(gurus)}">
+								<table id="dataTable" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Guru ID</th>
+											<th>NIP</th>
+											<th>Name</th>
+											<th>Nomor Handphone</th>
+											<th>Tempat/Tanggal Lahir</th>
+											<!--  <th>View</th>
+					                <th>Edit</th>-->
+											<th>Mata Pelajaran</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="guru : ${gurus}">
+											<td th:text="${guru.id}">Guru ID</td>
+											<td th:text="${guru.nip}">NIP</td>
+											<td th:inline="text">[[${guru.firstName}]]
+												[[${guru.lastName}]]</td>
+											<td th:inline="text">[[${guru.noHP}]]</td>
+											<td th:inline="text">[[${guru.tempatLahir}]] /
+												[[${guru.tglLahir}]]</td>
+											<td th:text="${guru.mapel} ? ${guru.mapel.namaMapel} : 'Belum Ada Mata Pelajaran !'"></td>
+											<!-- <td><a th:href="${ '/product/' + product.id}">View</a></td>
+					               			<td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>-->
+											<td><a th:href="${'/admin/guru/delete/' + guru.id}">Delete</a></td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th>Guru ID</th>
+											<th>NIP</th>
+											<th>Name</th>
+											<th>Nomor Handphone</th>
+											<th>Tempat/Tanggal Lahir</th>
+											<!--  <th>View</th>
+					                <th>Edit</th>-->
+											<th>Mata Pelajaran</th>
+											<th>Action</th>
+										</tr>
+									</tfoot>
+
+								</table>
+							</div>
+							<div class="box-footer clearfix no-border">
+								<a th:href=@{/admin/guru/add} type="button" class="btn btn-warning pull-right">
+									<i class="fa fa-plus"></i> Tambah Guru 
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

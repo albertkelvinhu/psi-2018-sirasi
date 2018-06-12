@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+
+<title>Rapor Siswa</title>
+
+<script src="/js/datatables.js"></script>
+
+</head>
+<body onload="window.print();"
+	class="hold-transition skin-blue sidebar-mini">
+	<div class="content-wrapper">
+		<section layout:fragment="content" class="invoice">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="page-header">
+						<i class="fa fa-book" th:inline="text"></i> Rapor :
+						[[${siswa.name}]] [[${siswa.lastName}]] <small class="pull-right">Semester
+							[[${report.semester}]] ; Tahun Ajaran : [[${report.tahunAjaran}]]</small>
+					</h2>
+				</div>
+			</div>
+			<div class="row invoice-info">
+				<div class="col-sm-4 invoice-col">
+					<b>Wali Kelas</b>
+					<hr>
+					<address>
+						<strong th:inline="text">[[${report.waliKelas.firstName}]]
+							[[${report.waliKelas.lastName}]]</strong> <br> Phone:
+						[[${report.waliKelas.noHP}]] <br> NIP:
+						[[${report.waliKelas.nip}]] <br> Phone: (804) 123-5432<br>
+						Email: [[${report.waliKelas.user.email}]]
+					</address>
+				</div>
+				<div class="col-sm-4 invoice-col">
+					<b>Nilai Perilaku </b>
+					<hr>
+					<b>Kebersihan&emsp;:</b> [[${report.perilaku.kebersihan}]]<br>
+					<b>Kerapihan&emsp;&ensp;:</b> [[${report.perilaku.kerapihan}]]<br>
+					<b>Kesopanan &emsp;:</b> [[${report.perilaku.kesopanan}]]<br>
+					<b>ketertiban&emsp;&ensp;:</b> [[${report.perilaku.ketertiban}]]<br>
+					<hr>
+				</div>
+				<div class="col-sm-4 invoice-col">
+
+					<b>Absensi </b>
+					<hr>
+					<b>Alpha&emsp;:</b> [[${report.absensi.alpha}]]<br> <b>Izin&emsp;&ensp;&ensp;:</b>
+					[[${report.absensi.izin}]]<br> <b>Sakit &emsp; :</b>
+					[[${report.absensi.sakit}]]<br>
+					<br>
+					<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 table-responsive">
+					<table id="raporNilai" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Mata Pelajaran</th>
+								<th>Tugas</th>
+								<th>UH</th>
+								<th>UTS</th>
+								<th>UAS</th>
+								<th>KKM</th>
+								<th>Akhir</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:if="${not #lists.isEmpty(nilai.tahunAjaran)}"
+								th:each="nilai : ${report.nilai}">
+								<td th:text="${nilai.mapelNilai.namaMapel}">Siswa ID</td>
+								<td th:text="${nilai.nilaiTugas}">Siswa ID</td>
+								<td th:text="${nilai.nilaiUH}">Siswa ID</td>
+								<td th:text="${nilai.nilaiUTS}">Siswa ID</td>
+								<td th:text="${nilai.nilaiUAS}">Siswa ID</td>
+								<td th:text="${nilai.mapelNilai.kkm}"></td>
+								<td><b th:text="${nilai.nilaiAkhir}"></b></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<!-- accepted payments column -->
+				<div class="col-xs-3">
+					
+				</div>
+				<div class="col-xs-3">
+					
+				</div>
+				<div class="col-xs-3">
+					
+				</div>
+				<!-- /.col -->
+				<div class="col-xs-3">
+					<div class="table-responsive">
+						<table class="table">
+							<tr>
+								<th style="width: 50%">Total :</th>
+								<td><b>[[${nilaiSUM}]]</b></td>
+							</tr>
+							<tr>
+								<th>Rata-rata :</th>
+								<td><h4><b>[[${nilaiAVG}]]</b></h4></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<!-- /.col -->
+			</div>
+		</section>
+	</div>
+</body>
+</html>

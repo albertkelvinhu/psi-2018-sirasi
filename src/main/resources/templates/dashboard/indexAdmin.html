@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head>
+<title>Administrasi</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>
+			Dashboard <small>Control panel</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+	</section>
+	<div layout:fragment="content">
+		<!-- Small boxes (Stat box) -->
+		<div class="row">
+			<div class="col-lg-4 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-aqua">
+					<div class="inner">
+						<h3 th:inline="text">[[${jumlahSiswa}]]</h3>
+						<p>Jumlah Siswa Aktif</p>
+					</div>
+					<div class="icon">
+						<i class="ion ion-pie-graph"></i>
+					</div>
+					<a th:href="@{/admin/siswa/list}" class="small-box-footer">Daftar
+						Siswa <i class="fa fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+			<div class="col-lg-4 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-green">
+					<div class="inner">
+						<h3 th:inline="text">[[${jumlahGuru}]]</h3>
+						<p>Jumlah Guru Aktif</p>
+					</div>
+					<div class="icon">
+						<i class="ion ion-pie-graph"></i>
+					</div>
+					<a th:href="@{/admin/guru/list}" class="small-box-footer">Daftar
+						Guru <i class="fa fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+			<!-- ./col -->
+			<div class="col-lg-4 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-yellow">
+					<div class="inner">
+						<h3 th:inline="text">[[${jumlahStaff}]]</h3>
+						<p>Jumlah Staff Aktif</p>
+					</div>
+					<div class="icon">
+						<i class="ion ion-pie-graph"></i>
+					</div>
+					<a th:href="@{/admin/staff/list}" class="small-box-footer">Daftar
+						Staff <i class="fa fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div>
+
+
+			<!-- ./col -->
+		</div>
+		<div class="row">
+			<!-- Left col -->
+			<section class="col-lg-6 connectedSortable">
+				<!-- TO DO List -->
+				<div class="box box-primary">
+					<div class="box-header">
+						<i class="ion ion-clipboard"></i>
+						<h3 class="box-title">Biodata User</h3>
+					</div>
+					<!-- /.box-header -->
+					<div class="box-body">
+
+						<div class="col-md-12">
+							<table class="table table-bordered">
+								<tr>
+									<td style="width: 150px">Status</td>
+									<td><span class="badge bg-green">Aktif</span></td>
+								</tr>
+								<tr>
+									<td style="width: 150px">Nama</td>
+									<td th:inline="text">[[${user.firstName}]]
+										[[${user.lastName}]]</td>
+								</tr>
+								<tr>
+									<td style="width: 150px">NISN</td>
+									<td th:inline="text">[[${user.nip}]]</td>
+								</tr>
+								<tr>
+									<td style="width: 150px">Alamat</td>
+									<td th:inline="text">[[${user.alamat}]]</td>
+								</tr>
+								<tr>
+									<td style="width: 150px">No HP</td>
+									<td th:inline="text">[[${user.noHP}]]</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<!-- /.box-body -->
+					<div class="box-footer clearfix no-border">
+						<button type="button" class="btn btn-default pull-right">
+							<i class="fa fa-plus"></i> Edit
+						</button>
+					</div>
+				</div>
+				<!-- /.box -->
+
+			</section>
+		</div>
+		<!-- /.row -->
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>List Siswa</title>
+</head>
+<body>
+
+	<div>
+		<div class="content-wrapper">
+			<section layout:fragment="header">
+				<h1>
+					List <small>Siswa</small>
+				</h1>
+
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">List Siswa</li>
+				</ol>
+			</section>
+			<section layout:fragment="content" class="content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-body" th:if="${not #lists.isEmpty(siswas)}">
+								<div class="col-xs-9">
+									<table id="siswalist"
+										class="table table-bordered table-striped">
+										<tr>
+											<th>Siswa ID</th>
+											<th>NISN</th>
+											<th>Name</th>
+											<th>Jenis Kelamin</th>
+											<th>Tanggal Lahir</th>
+										</tr>
+										<tr th:each="siswa : ${siswas}">
+											<td th:text="${siswa.id}">Siswa ID</td>
+											<td th:text="${siswa.nisn}">NISN</td>
+											<td th:text="${siswa.name}">Name</td>
+											<td th:text="${siswa.jenisKelamin}">Jenis Kelamin</td>
+											<td th:text="${siswa.tglLahir}">Tanggal Lahir</td>
+										</tr>
+									</table>
+								</div>
+								<div class="col-xs-3">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

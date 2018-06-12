@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>Informasi Mata Pelajaran</title>
+
+
+<script src="/js/datatables.js"></script>
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="content-wrapper">
+		<section layout:fragment="header">
+			<h1>
+				Mata Pelajaran <small>Informasi</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Mata Pelajaran</li>
+			</ol>
+		</section>
+		<section layout:fragment="content" class="content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">Nilai :
+								[[${mapel.namaMapel}]]</h3>
+						</div>
+						<div class="box-body">
+							<table id="dataTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Siswa ID</th>
+										<th>NISN</th>
+										<th>Nama</th>
+										<th>Kelas</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="siswa : ${siswas}">
+										<td th:text="${siswa.id}">Siswa ID</td>
+										<td th:text="${siswa.nisn}">NISN</td>
+										<td th:text="${siswa.name}">Name</td>
+										<td th:text="${siswa.kelas} ? ${siswa.kelas.kodeKelas} : 'Belum Ada Kelas !'" >Kode Kelas</td>
+										<td th:if="${siswa.kelas != null}" ><a th:href="${'/nilai/siswa/' + siswa.id}">Info Nilai</a></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Siswa ID</th>
+										<th>NISN</th>
+										<th>Nama</th>
+										<th>Kelas</th>
+										<th>Actions</th>
+									</tr>
+								</tfoot>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+
+	</div>
+</body>
+</html>

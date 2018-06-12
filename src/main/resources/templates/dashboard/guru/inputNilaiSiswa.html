@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="/layout">
+<head lang="en">
+<title>Informasi Mata Pelajaran</title>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="content-wrapper">
+		<section layout:fragment="header">
+			<h1>
+				Mata Pelajaran <small>Nilai</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">Mata Pelajaran</li>
+				<li class="active">Nilai</li>
+			</ol>
+		</section>
+		<section layout:fragment="content" class="content">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">Data Diri Siswa</h3>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="col-md-4">
+								<strong><i class="fa fa-book margin-r-5"></i> Nama
+									Siswa</strong>
+								<p class="text-muted">[[${siswa.name}]]
+									[[${siswa.lastName}]]</p>
+							</div>
+							<div class="col-md-4">
+								<strong><i class="fa fa-book margin-r-5"></i> Kelas
+									Siswa</strong>
+								<p class="text-muted">[[${siswa.kelas.kodeKelas}]]</p>
+							</div>
+							<div class="col-md-4">
+								<strong><i class="fa fa-book margin-r-5"></i> NISN
+									Siswa</strong>
+								<p class="text-muted">[[${siswa.nisn}]]</p>
+							</div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">Nilai :
+								[[${mapel.namaMapel}]]</h3>
+						</div>
+						<div class="box-body">
+							<table id="dataTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+										<th>Semester</th>
+										<th>Tugas</th>
+										<th>UH</th>
+										<th>UTS</th>
+										<th>UAS</th>
+										<th>Akhir</th>
+										<th>Tahun Ajaran</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:if="${not #lists.isEmpty(nilai.tahunAjaran)}"
+										th:each="nilai : ${nilais}">
+										<td th:text="${nilai.semester}">Siswa ID</td>
+										<td th:text="${nilai.nilaiTugas}">Siswa ID</td>
+										<td th:text="${nilai.nilaiUH}">Siswa ID</td>
+										<td th:text="${nilai.nilaiUTS}">Siswa ID</td>
+										<td th:text="${nilai.nilaiUAS}">Siswa ID</td>
+										<td th:text="${nilai.nilaiAkhir}">Siswa ID</td>
+										<td th:text="${nilai.tahunAjaran}">Siswa ID</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<th>Semester</th>
+										<th>Tugas</th>
+										<th>UH</th>
+										<th>UTS</th>
+										<th>UAS</th>
+										<th>Akhir</th>
+										<th>Tahun Ajaran</th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="box box-primary">
+						<div class="box-header with-border">
+							<h3 class="box-title" th:inline="text">Nilai :
+								[[${mapel.namaMapel}]]</h3>
+						</div>
+						<div class="box-body">
+							<form th:action="@{/nilai/siswa/add}" method="post" role="form">
+									<table id="dataTable"
+										class="table table-bordered table-striped">
+										<tbody>
+											<tr>
+												<td>UH</td>
+												<td><input type="text" class="form-control" id="uh"
+													th:field="${nilai.nilaiUH}" placeholder="Masukkan Nilai UH"
+													required="required" /></td>
+											</tr>
+											<tr>
+												<td>UTS</td>
+												<td><input type="text" class="form-control" id="uts"
+													th:field="${nilai.nilaiUTS}"
+													placeholder="Masukkan Nilai UTS" required="required" /></td>
+											</tr>
+											<tr>
+												<td>UAS</td>
+												<td><input type="text" class="form-control" id="uas"
+													th:field="${nilai.nilaiUAS}"
+													placeholder="Masukkan Nilai UAS" required="required" /></td>
+											</tr>
+											<tr>
+												<td>TUGAS</td>
+												<td><input type="text" class="form-control" id="tugas"
+													th:field="${nilai.nilaiTugas}"
+													placeholder="Masukkan Nilai Tugas" required="required" /></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="box-footer">
+										<button type="submit" class="btn btn-primary">Submit</button>
+									</div>
+							</form>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</section>
+	</div>
+
+</body>
+</html>
